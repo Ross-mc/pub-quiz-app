@@ -54,8 +54,8 @@ router.post("/search-title", (req, res, next) => {
     const collection = db.db().collection("quizzes");
 
     
-    var query = {title: usersearch}
-    collection.find(query).toArray(function(err, result){
+
+    collection.find({title: {$regex: usersearch, $options: 'i'}}).toArray(function(err, result){
       if (err) throw err;
       db.close
       foundQuizzes = result;

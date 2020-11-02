@@ -98,10 +98,6 @@ body{
     }
 }
 
-#user-title{
-    width: 80%;
-    text-align: center;
-}
 
 .submit-btn{
     background-color: #11b461;
@@ -176,7 +172,7 @@ body{
 }
 
 @media(min-width: 1000px){
-    .finish-btn, .submit-btn, #user-title, #user-name{
+    .finish-btn, .submit-btn, .user-input{
         width: 45%;
     }
     .completed-btn{
