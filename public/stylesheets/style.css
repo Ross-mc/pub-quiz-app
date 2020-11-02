@@ -200,6 +200,20 @@ body{
     font-size: 2rem;
 }
 
+@media(max-width: 768px){
+    .quiz-question{
+        font-size: 1rem;
+    }
+
+    .quiz-title{
+        font-size: 1.5rem
+    }
+
+    .question-number{
+        font-size: 1.2rem;
+    }
+}
+
 .hidden-input{
     display: none;
 }
