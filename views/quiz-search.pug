@@ -21,7 +21,7 @@ body
     section#found-quizzes
         for item in quizzes
             - var index = quizzes.indexOf(item)
-            form(action="/quiz-play" method="GET").quiz-card(id=index)
+            form(action="/quiz-play", method="GET").quiz-card(id=index)
                 h3.quiz-title=item.title
                 h4.user-submitted='Submitted by ' + item.username
                 if item.questions.length > 1

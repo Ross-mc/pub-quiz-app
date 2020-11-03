@@ -50,8 +50,9 @@ $(function(){
                     <p class="user-score">You scored: ${userScore}/${res[clickedID].questions.length}!</p>
                     <a href="../index.html" class="completed-btn" id="return-home" type="button">Return Home</button>`)
                 };
-                $(".question-number").html(`Question Number ${currentQuestion +1}`)
-                $(".quiz-question").html(`${res[clickedID].questions[currentQuestion]}?`)
+                $(".question-number").html(`Question Number ${currentQuestion +1}`);
+                $(".quiz-question").html(`${res[clickedID].questions[currentQuestion]}?`);
+                $(".user-score").html(`Current Score: ${userScore}/${res[clickedID].questions.length}`)
             });
 
         });

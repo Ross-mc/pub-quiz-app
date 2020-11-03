@@ -93,12 +93,12 @@ $(function(){
    
 
                             $("#user-created-quizzes").append(`
-                                <form class="quiz-card user-submitted" id="${quizzes[i].title}" method="POST" action="/quizzes" target="uploader_iframe">
+                                <form class="quiz-card user-submitted" id="${quizzes[i].title}" method="POST" action="/quizzes" target="uploader_iframe" onsubmit="${i}-btn.disabled = true; return true;">
                                     <h3 class="quiz-title">${quizzes[i].title}</h3>
                                     <h4 class="num-questions" id="${i}-questions">${quizzes[i].questionArr.length} question</h4>
                                     <button class="completed-btn edit-quiz" id="${i}-edit" type="button">Edit Quiz</button>
                                     <button class="completed-btn play-quiz" id="${i}-play" type="button">Play Quiz</button>
-                                    <button class="completed-btn save-quiz" id="${i}-save" type="submit">Save Quiz</button>
+                                    <button class="completed-btn save-quiz" id="${i}-save" name="${i}-btn" type="submit">Save Quiz</button>
                                     <input class="hidden-input" id="${i}-title" name="title" value="${quizzes[i].title}">
                                     <input class="hidden-input" id="${i}-username" name="username" value="${quizzes[i].name}">
                                     <input class="hidden-input" id="${i}-questions" name="questions" value="${quizzes[i].questionArr}">
@@ -118,10 +118,21 @@ $(function(){
                             }
 
 
-                            setTimeout(function(){
-                                $(this).attr("disabled", true);
-                                alert('Quiz Successfully Submitted');
-                            }, 1000);
+                            else {
+                                setTimeout(function(){
+                                    alert('Quiz submitted');                              
+                                }, 500);
+                                
+                            }
+
+                            $(this).css('display', 'none')
+
+                            
+
+
+                            
+
+                            
                             
 
                         });
@@ -283,6 +294,10 @@ $(function(){
 
                             let userScore = 0;
 
+                            for (let i = 0; i < quizzes[clickedID].questionArr.length; i++){
+                                quizzes[clickedID].questionArr[i] = quizzes[clickedID].questionArr[i].replace("?", "");
+                            }
+
                             $("body").append(`
                                 <div class="game-on quiz-card">
                                     <h3 class="quiz-title">${quizzes[clickedID].title}</h3>
@@ -322,8 +337,9 @@ $(function(){
                                     });
                                 }
 
-                                $(".question-number").html(`Question Number ${currentQuestion +1}`)
-                                $(".quiz-question").html(`${quizzes[clickedID].questionArr[currentQuestion]}?`)
+                                $(".question-number").html(`Question Number ${currentQuestion +1}`);
+                                $(".quiz-question").html(`${quizzes[clickedID].questionArr[currentQuestion]}?`);
+                                $(".user-score").html(`Current Score: ${userScore}/${res[clickedID].questions.length}`)
                                   
 
                             });
