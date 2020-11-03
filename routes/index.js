@@ -56,12 +56,13 @@ router.post("/search-title", (req, res, next) => {
     
 
     collection.find({title: {$regex: usersearch, $options: 'i'}}).toArray(function(err, result){
-      if (err) throw err;
+      if (err) { console.log(err) }
       db.close
       foundQuizzes = result;
 
       if (foundQuizzes.length === 0){
-        // alert('No quizzes with that username were found')
+        console.log('no quizzes found');
+        res.render('no-result.pug');
       } else{
         var JSONdata = JSON.stringify(foundQuizzes);
         console.log(JSONdata);
