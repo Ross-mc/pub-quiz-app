@@ -5,8 +5,8 @@ const quizzes = [];
 
 $(function(){
 
-    //user can now fully edit quizzes, including answers and questions.
-    //to do list includes saving the quizzes to a database and allowing different types of questions such as true/false or multiple choice
+    //user can fully make and save quizzes to database
+    //to do list includes allowing different types of questions such as true/false or multiple choice
 
     
 
@@ -79,10 +79,15 @@ $(function(){
 
                 $("#submit-question").after('<button class="finish-btn" id="finish-quiz" type="submit">Finish quiz</button>')
                 $("#finish-quiz").click(function(){
-                    if ($("#user-question").val()!=="" || $("#user-answer").val()!==""){
-                        alert('You have not saved the current question!');
-                        return
-                    } 
+                    if ($("#user-question").val()!=="" && $("#user-answer").val()!==""){
+                        let question = $("#user-question").val();
+                        question.replace("?", "")
+                        let answer = $("#user-answer").val();
+                        quiz.questionArr.push(question);
+                        quiz.answerArr.push(answer);
+
+                    }
+                        
 
                     $("#finish-quiz").remove();//remove the finish button to stop it displaying on home page
                     quizzes.push(quiz);//save the user created quiz to an array of user created quizzes
@@ -90,7 +95,7 @@ $(function(){
 
                         $(".quiz-question-builder").remove();
                         for (let i = 0; i<quizzes.length; i++){
-   
+
 
                             $("#user-created-quizzes").append(`
                                 <form class="quiz-card user-submitted" id="${quizzes[i].title}" method="POST" action="/quizzes" target="uploader_iframe" onsubmit="${i}-btn.disabled = true; return true;">
@@ -105,7 +110,7 @@ $(function(){
                                     <input class="hidden-input" id="${i}-answers" name="answers" value="${quizzes[i].answerArr}">
                                     <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
 
-                               </form>`)//This for loop creates a new quiz card for each user created quiz in the current session.
+                            </form>`)//This for loop creates a new quiz card for each user created quiz in the current session.
                             if (quizzes[i].questionArr.length > 1){
                                 $(".num-questions").text(`${quizzes[i].questionArr.length} questions`)
                             }
@@ -127,16 +132,8 @@ $(function(){
 
                             $(this).css('display', 'none')
 
-                            
-
-
-                            
-
-                            
-                            
-
                         });
-                                                   
+                                                
                         // function for editing the quiz
                         $(".edit-quiz").click(function(){
                             
@@ -174,9 +171,6 @@ $(function(){
 
                                 addBtnClicked = true;
 
-                                
-
-                                //arr.splice(index, 0, item);
                             });
                             // once the user is satisified with edits, by clicking submit it saves the edited question or answer
                             $("#submit-edited-question").click(function(){
@@ -195,12 +189,13 @@ $(function(){
                                 }
                                 
                                 if (addBtnClicked === false){
-                                    quizzes[clickedID].questionArr[currentQuestion] = question;//I need to add form validation here
-                                    quizzes[clickedID].answerArr[currentQuestion] = answer;//I need to add form validation here
+                                    quizzes[clickedID].questionArr[currentQuestion] = question;
+                                    quizzes[clickedID].answerArr[currentQuestion] = answer;
                                     currentQuestion++;
                                     $(".question-number").html(`Question Number ${currentQuestion+1}`);//updates the question number
                                     $("#edit-question").val(quizzes[clickedID].questionArr[currentQuestion]);//refreshes the quiz to the next questions                               
                                     $("#edit-answer").val(quizzes[clickedID].answerArr[currentQuestion]);
+    
                                     
                                     if (currentQuestion === quizzes[clickedID].questionArr.length){
                                         $(".game-on").empty().append(`
@@ -220,7 +215,8 @@ $(function(){
                                     $(".question-number").html(`Question Number ${currentQuestion+1}`);
                                     $("#edit-question").val(quizzes[clickedID].questionArr[currentQuestion]);                            
                                     $("#edit-answer").val(quizzes[clickedID].answerArr[currentQuestion]);
-                                    $(`#${clickedID}-questions`).html(`${quizzes[clickedID].questionArr.length} question(s)`)
+                                    $(`#${clickedID}-questions`).html(`${quizzes[clickedID].questionArr.length} question(s)`);
+                                    addBtnClicked = false;
                                 } 
 
                                 
@@ -278,9 +274,12 @@ $(function(){
                                 $(".question-number").html(`Question Number ${currentQuestion+1}`);//updates the question number
                                 $("#edit-question").val(quizzes[clickedID].questionArr[currentQuestion]);                               
                                 $("#edit-answer").val(quizzes[clickedID].answerArr[currentQuestion]);
+                                $(`#${clickedID}-questions`).html(`${quizzes[clickedID].questionArr.length} questions`)
                                 $(".game-on").fadeOut(400, function(){
                                     $(this).remove();
                                     frontPageElements.fadeIn(400);
+
+                                    //come back here
                                 })
                             });
                         });
@@ -340,12 +339,12 @@ $(function(){
                                 $(".question-number").html(`Question Number ${currentQuestion +1}`);
                                 $(".quiz-question").html(`${quizzes[clickedID].questionArr[currentQuestion]}?`);
                                 $(".user-score").html(`Current Score: ${userScore}/${res[clickedID].questions.length}`)
-                                  
+                                    
+
+                                });
 
                             });
-
                         });
-                    });
                 });
             };    
         })
