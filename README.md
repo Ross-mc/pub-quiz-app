@@ -18,6 +18,10 @@ As part of an application for a software development job, I was tasked with crea
 3. JavaScript (optional jQuery).
 4. MySQL or PHP for backend. -- I have opted to use Node.js and MongoDB for the back end.
 
+## Deployment
+
+I have deployed the completely function web application via Heroku and can be accessed [here](http://pub-quiz-builder.herokuapp.com/)
+
 ### Footnote
 
 This is a refactored version of a previous repository (see [here](https://github.com/Ross-mc/pub-quiz-builder)).
