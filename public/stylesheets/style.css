@@ -167,6 +167,16 @@ a:hover{
     text-decoration: underline;
 }
 
+#home-link{
+    color: white;
+    text-decoration: none;
+}
+
+#home-link:hover{
+    text-decoration: underline;
+}
+
+
 
 .edit-quiz, #return-home, #add-new-question{
     background-color: rgb(197, 136, 3);
