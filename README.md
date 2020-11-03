@@ -20,7 +20,7 @@ As part of an application for a software development job, I was tasked with crea
 
 ## Deployment
 
-I have deployed the completely function web application via Heroku and can be accessed [here](http://pub-quiz-builder.herokuapp.com/)
+I have deployed the completely function web application via Heroku. The app can be accessed [here](http://pub-quiz-builder.herokuapp.com/)
 
 ### Footnote
 
