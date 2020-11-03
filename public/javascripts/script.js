@@ -146,7 +146,7 @@ $(function(){
                             let addBtnClicked = false;
 
                             $("body").append(`
-                            <form class="game-on quiz-card" id="edit-quiz">
+                            <div class="game-on quiz-card" id="edit-quiz">
                                 <h3 class="quiz-title">${quizzes[clickedID].title}</h3>
                                 <h4 class="question-number">Question Number ${currentQuestion+1}</h4>
                                 <input type="text" value="${quizzes[clickedID].questionArr[currentQuestion]}" class="user-input" id="edit-question" minlength="1">
@@ -155,8 +155,8 @@ $(function(){
                                 <button class="move-btn" id="move-left"><i class="fas fa-angle-left"></i></button>
                                 <button class="submit-btn" id="submit-edited-question" type="button">Save question</button>
                                 <button class="submit-btn" id="add-new-question" type="button">Add new question</button>
-                                <button class="finish-btn" id="save-quiz" type="button">Save quiz</button>                
-                            </form>`);
+                                <button class="finish-btn" id="save-quiz" type="button">Fnish Editing</button>                
+                            </div>`);
 
                             //function for moving between questions in the quiz
 

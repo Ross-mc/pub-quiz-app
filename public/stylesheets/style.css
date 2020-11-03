@@ -158,6 +158,15 @@ body{
     left: 3%;
 }
 
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
 
 .edit-quiz, #return-home, #add-new-question{
     background-color: rgb(197, 136, 3);
