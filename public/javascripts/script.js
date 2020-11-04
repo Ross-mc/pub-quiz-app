@@ -152,7 +152,7 @@ $(function(){
                                 <button class="move-btn" id="move-left"><i class="fas fa-angle-left"></i></button>
                                 <button class="submit-btn" id="submit-edited-question" type="button">Save question</button>
                                 <button class="submit-btn" id="add-new-question" type="button">Add new question</button>
-                                <button class="finish-btn" id="save-quiz" type="button">Fnish Editing</button>                
+                                <button class="finish-btn" id="save-quiz" type="button">Finish Editing</button>                
                             </div>`);
 
                             //function for moving between questions in the quiz
@@ -302,7 +302,7 @@ $(function(){
                                     <h3 class="quiz-title">${quizzes[clickedID].title}</h3>
                                     <h4 class="question-number">Question Number ${currentQuestion +1}</h4>
                                     <p class="quiz-question">${quizzes[clickedID].questionArr[currentQuestion]}?</p>
-                                    <input type="text" placeholder="Enter the your guess" class="user-input" id="play-answer">
+                                    <input type="text" placeholder="Enter your guess" class="user-input" id="play-answer">
                                     <button class="guess-btn submit-btn" id="submit-guess" type="submit">Go!</button>
                                     <p class="user-score">Current Score: ${userScore}/${quizzes[clickedID].questionArr.length}</p>                
                                 </div>`)

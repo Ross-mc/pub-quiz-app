@@ -22,7 +22,7 @@ $(function(){
                 <h3 class="quiz-title">${res[clickedID].title}</h3>
                 <h4 class="question-number">Question Number ${currentQuestion +1}</h4>
                 <p class="quiz-question">${res[clickedID].questions[currentQuestion]}?</p>
-                <input type="text" placeholder="Enter the your guess" class="user-input" id="play-answer">
+                <input type="text" placeholder="Enter your guess" class="user-input" id="play-answer">
                 <button class="guess-btn submit-btn" id="submit-guess" type="submit">Go!</button>
                 <p class="user-score">Current Score: ${userScore}/${res[clickedID].questions.length}</p>                
             </div>`)
