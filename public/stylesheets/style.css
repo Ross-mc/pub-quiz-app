@@ -15,6 +15,15 @@ body{
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+
+#user-header{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    background: transparent;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 #search-header{
     font-size: 24px;
     margin-left: 3vw;
@@ -200,9 +209,6 @@ a:hover{
     }
 }
 
-#user-created-quizzes{
-    display: none;
-}
 
 .game-on{
     display: none;

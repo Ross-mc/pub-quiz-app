@@ -1,12 +1,34 @@
 
 const quizzes = [];
 
+var storedQuizzes = JSON.parse(localStorage.getItem("storedQuizzes"));
+
 
 
 $(function(){
 
     //user can fully make and save quizzes to database
     //to do list includes allowing different types of questions such as true/false or multiple choice
+
+    if (storedQuizzes){
+        $("#user-created-quizzes").append('<h2 id="user-header">Your Previously Created Quizzes</h2>')
+        for (let i = 0; i<storedQuizzes.length; i++){
+            $("#user-created-quizzes").append(`
+                <form class="quiz-card user-submitted" id="${storedQuizzes[i].title}" method="POST" action="/quizzes" target="uploader_iframe" onsubmit="${i}-btn.disabled = true; return true;">
+                    <h3 class="quiz-title">${storedQuizzes[i].title}</h3>
+                    <h4 class="num-questions" id="${i}-questions">${storedQuizzes[i].questionArr.length} question</h4>
+                    <button class="completed-btn edit-quiz" id="${i}-edit" type="button">Edit Quiz</button>
+                    <button class="completed-btn play-quiz" id="${i}-play" type="button">Play Quiz</button>
+                    <button class="completed-btn save-quiz" id="${i}-save" name="${i}-btn" type="submit">Save Quiz</button>
+                    <input class="hidden-input" id="${i}-title" name="title" value="${storedQuizzes[i].title}">
+                    <input class="hidden-input" id="${i}-username" name="username" value="${storedQuizzes[i].name}">
+                    <input class="hidden-input" id="${i}-questions" name="questions" value="${storedQuizzes[i].questionArr}">
+                    <input class="hidden-input" id="${i}-answers" name="answers" value="${storedQuizzes[i].answerArr}">
+                    <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
+                </form>`)
+        }
+        quizzes.push(...storedQuizzes);
+    }
 
     
 
@@ -90,7 +112,7 @@ $(function(){
                         
 
                     $("#finish-quiz").remove();//remove the finish button to stop it displaying on home page
-                    quizzes.push(quiz);//save the user created quiz to an array of user created quizzes
+                    quizzes.unshift(quiz);//save the user created quiz to an array of user created quizzes
                     $(".quiz-question-builder").fadeOut(400, function(){
 
                         $(".quiz-question-builder").remove();
@@ -115,6 +137,7 @@ $(function(){
                                 $(".num-questions").text(`${quizzes[i].questionArr.length} questions`)
                             }
                         };
+                        localStorage.setItem("storedQuizzes", JSON.stringify(quizzes));
                         frontPageElements.fadeIn(400);
 
                         $(".save-quiz").click(function(){
